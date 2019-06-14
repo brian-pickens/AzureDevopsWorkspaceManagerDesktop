@@ -1,0 +1,38 @@
+﻿<controls:MetroWindow x:Class="WorkspaceManager.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:converters="clr-namespace:SimpleMVVM.Converters;assembly=SimpleMVVM"
+        xmlns:wpf="clr-namespace:SimpleMVVM.LoadingIndicators;assembly=SimpleMVVM.LoadingIndicators"
+            mc:Ignorable="d"
+        Title="Azure Devops Workspace Manager"
+        Height="400"
+        MinHeight="200"
+        Width="600"
+        MinWidth="400"
+        ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo ProgressState="{Binding [IsLoaderIndicatorVisible], Converter={x:Static converters:Static.BoolProgressConverter}}" />
+    </Window.TaskbarItemInfo>
+
+    <Grid>
+        <ContentControl Grid.Column="0" Margin="0,25,0,0" Content="{Binding [CurrentView]}"></ContentControl>
+        <wpf:LoadingIndicator Grid.Column="0" SpeedRatio="1.0" IsActive="{Binding [IsLoaderIndicatorVisible]}"
+            Style="{DynamicResource LoadingIndicatorArcsRingStyle}"/>
+        <Expander HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ExpandDirection="Down" IsExpanded="{Binding [ShowLog]}">
+            <Expander.Header>
+                <Grid HorizontalAlignment="Stretch">
+                    <TextBlock Foreground="White">LOG</TextBlock>
+                    <TextBlock Foreground="White" Margin="0,0,30,0" HorizontalAlignment="Right">Verbose</TextBlock>
+                    <CheckBox IsChecked="{Binding [EnableVerbose]}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,0,0"/>
+                </Grid>
+            </Expander.Header>
+            <ContentControl Content="{Binding [LogView]}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></ContentControl>
+        </Expander>
+    </Grid>
+
+</controls:MetroWindow>
