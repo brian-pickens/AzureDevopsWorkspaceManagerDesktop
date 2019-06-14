@@ -13,4 +13,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AzureDevops.Services\AzureDevops.Services.csproj" />
+  </ItemGroup>
+
 </Project>
