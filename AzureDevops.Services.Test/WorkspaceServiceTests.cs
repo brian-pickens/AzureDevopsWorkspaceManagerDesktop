@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using Xunit;
+using AzureDevops.Services;
 
 namespace AzureDevops.Services.Test
 {
@@ -11,6 +12,7 @@ namespace AzureDevops.Services.Test
         public void Test_GetListOfWorkspaceServices()
         {
             var workspaceService = new WorkspaceService();
+            Assert.True(false);
         }
 
     }
