@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureDevops.Services", "Azu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureDevops.Services.Test", "AzureDevops.Services.Test\AzureDevops.Services.Test.csproj", "{EC9D651F-4EB9-4567-88FF-8D8EA2B8CA53}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleMVVM", "..\SimpleMVVM\SimpleMVVM\SimpleMVVM.csproj", "{F08BD187-3284-4DFD-B6E1-79ADABD8C87B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleMVVM", "SimpleMVVM\SimpleMVVM\SimpleMVVM.csproj", "{F08BD187-3284-4DFD-B6E1-79ADABD8C87B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleMVVM.Serilog", "..\SimpleMVVM\SimpleMVVM.Serilog\SimpleMVVM.Serilog.csproj", "{C0774DE6-5303-476B-BE25-F0C1B7D9BDC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleMVVM.Serilog", "SimpleMVVM\SimpleMVVM.Serilog\SimpleMVVM.Serilog.csproj", "{C0774DE6-5303-476B-BE25-F0C1B7D9BDC6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleMVVM.LoadingIndicators", "..\SimpleMVVM\SimpleMVVM.LoadingIndicators\SimpleMVVM.LoadingIndicators.csproj", "{B42BDA13-BA66-4731-ACC8-59D538D05945}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleMVVM.LoadingIndicators", "SimpleMVVM\SimpleMVVM.LoadingIndicators\SimpleMVVM.LoadingIndicators.csproj", "{B42BDA13-BA66-4731-ACC8-59D538D05945}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
