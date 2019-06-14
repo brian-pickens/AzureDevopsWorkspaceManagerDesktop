@@ -1,0 +1,3 @@
+[submodule "SimpleMVVM"]
+	path = SimpleMVVM
+	url = https://github.com/brian-pickens-web/SimpleMVVM.git
