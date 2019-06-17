@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using SimpleInjector;
 using WorkspaceManager.Configuration;
 using WorkspaceManager.Views;
@@ -10,7 +11,7 @@ namespace WorkspaceManager
         private static Container Container => Bootstrapper.Container;
 
         [STAThread]
-        static void Main()
+        static async Task Main()
         {
             SimpleMVVM.Program.Run(Container, Container.GetInstance<MainWindow>());
         }

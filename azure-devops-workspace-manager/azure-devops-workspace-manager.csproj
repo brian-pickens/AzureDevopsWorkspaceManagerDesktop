@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFrameworks>net47;net48</TargetFrameworks>
     <RootNamespace>WorkspaceManager</RootNamespace>
     <UseWPF>true</UseWPF>
     <StartupObject>WorkspaceManager.Program</StartupObject>
@@ -12,6 +12,7 @@
     <PackageReference Include="MahApps.Metro" Version="2.0.0-alpha0391" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
+    <PackageReference Include="Microsoft.TeamFoundationServer.ExtendedClient" Version="16.143.1" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.0.1">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
@@ -27,9 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SimpleMVVM\SimpleMVVM.LoadingIndicators\SimpleMVVM.LoadingIndicators.csproj" />
-    <ProjectReference Include="..\..\SimpleMVVM\SimpleMVVM.Serilog\SimpleMVVM.Serilog.csproj" />
-    <ProjectReference Include="..\..\SimpleMVVM\SimpleMVVM\SimpleMVVM.csproj" />
+    <ProjectReference Include="..\SimpleMVVM\SimpleMVVM.LoadingIndicators\SimpleMVVM.LoadingIndicators.csproj" />
+    <ProjectReference Include="..\SimpleMVVM\SimpleMVVM.Serilog\SimpleMVVM.Serilog.csproj" />
+    <ProjectReference Include="..\SimpleMVVM\SimpleMVVM\SimpleMVVM.csproj" />
   </ItemGroup>
 
 </Project>
