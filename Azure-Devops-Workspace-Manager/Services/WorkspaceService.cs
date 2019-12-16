@@ -11,7 +11,7 @@ namespace WorkspaceManager.Services
     public class WorkspaceService
     {
 
-        const string SERVER_IDENTITY = "Microsoft.TeamFoundation.ServiceIdentity";
+        const string SERVER_IDENTITY_TYPE = "Microsoft.TeamFoundation.ServiceIdentity";
 
         private readonly VersionControlServer _versionControlServer;
 
@@ -25,7 +25,7 @@ namespace WorkspaceManager.Services
         {
             return await Task.Run(() => 
                 _versionControlServer.QueryWorkspaces(null, "", "")
-                    .Where(wsp => wsp.OwnerIdentityType != (includeServerCreatedWorkspaces ? "" : SERVER_IDENTITY)));
+                    .Where(wsp => wsp.OwnerIdentityType != (includeServerCreatedWorkspaces ? "" : SERVER_IDENTITY_TYPE)));
         }
     }
 

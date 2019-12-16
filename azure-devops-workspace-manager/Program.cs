@@ -11,7 +11,7 @@ namespace WorkspaceManager
         private static Container Container => Bootstrapper.Container;
 
         [STAThread]
-        static async Task Main()
+        static void Main()
         {
             SimpleMVVM.Program.Run(Container, Container.GetInstance<MainWindow>());
         }

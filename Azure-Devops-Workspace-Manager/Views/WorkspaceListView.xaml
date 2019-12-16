@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="WorkspaceManager.Views.WorkspaceListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:interactions="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="400">
+
+    <Grid Margin="5,5,5,5" Name="Base">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <ComboBox Grid.Row="0" HorizontalAlignment="Stretch" Height="30" Margin="0,0,37,0" IsTextSearchEnabled="true" 
+                  IsEditable="True" ItemsSource="{Binding [WorkspaceOwners]}" Text="{Binding [SelectedServer]}">
+            <ComboBox.InputBindings>
+                <KeyBinding Command="{Binding [SearchCommand]}" Key="Enter"/>
+            </ComboBox.InputBindings>
+            <interactions:Interaction.Triggers>
+                <interactions:EventTrigger EventName="GotFocus">
+                    <interactions:InvokeCommandAction Command="{Binding [ComboBoxPlaceholderGotFocusCommand]}"/>
+                </interactions:EventTrigger>
+                <interactions:EventTrigger EventName="LostFocus">
+                    <interactions:InvokeCommandAction Command="{Binding [ComboBoxPlaceholderLostFocusCommand]}"/>
+                </interactions:EventTrigger>
+            </interactions:Interaction.Triggers>
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Width="350">
+                        <TextBlock Text="{Binding }" Height="15" />
+                    </DockPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Button Grid.Row="0" HorizontalAlignment="Right" Height="30" Width="36" IsEnabled="{Binding [IsSearchEnabled]}" Style="{StaticResource MetroFlatButton}"
+                Command="{Binding [SearchCommand]}">
+            <iconPacks:PackIconMaterial Kind="Magnify" />
+        </Button>
+
+        <ListBox Grid.Row="1" Margin="0,5,0,5" ItemsSource="{Binding [Workspaces]}" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListBox.ItemTemplate>
+                <HierarchicalDataTemplate>
+                    <Grid>
+                        <CheckBox Content="{Binding DisplayName}" IsChecked="{Binding SelectedForUpdate}" Command="{Binding DataContext[SelectedServicesChangedCommand], ElementName=Base}" HorizontalAlignment="Left" />
+                        <TextBlock Text="{Binding Status}" HorizontalAlignment="Right" Margin="0,0,75,0" />
+                        <Button HorizontalAlignment="Right" Height="20" Width="20" Style="{StaticResource MetroFlatButton}" Padding="0" Margin="0,0,50,0"
+                                Command="{Binding DataContext[DeleteCommand], ElementName=Base}" CommandParameter="{Binding }">
+                            <iconPacks:PackIconMaterial Kind="Delete" Height="11" Width="11"/>
+                        </Button>
+                    </Grid>
+                </HierarchicalDataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button Grid.Row="3" HorizontalAlignment="Right" Height="30" Width="100" Content="Next" Command="{Binding [DeleteSelectedCommand]}" IsEnabled="{Binding [IsWorkspacesSelected]}" Style="{StaticResource MetroFlatButton}"></Button>
+
+    </Grid>
+</UserControl>

@@ -6,7 +6,7 @@ using WorkspaceManager.Services;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace AzureDevops.Services.Test
+namespace WorkspaceManager.Test
 {
     public class WorkspaceServiceTests
     {

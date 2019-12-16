@@ -1,12 +1,9 @@
 ﻿using System;
-using Serilog;
-using Serilog.Core;
-using Serilog.Extensions.Logging;
 using SimpleInjector;
 using SimpleMVVM.Framework;
-using SimpleMVVM.Serilog;
+using WorkspaceManager.Services;
+using WorkspaceManager.ViewModels;
 using WorkspaceManager.Views;
-using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace WorkspaceManager.Configuration
 {
@@ -19,21 +16,9 @@ namespace WorkspaceManager.Configuration
             // Create the container as usual.
             Container = new Container();
             Container.Options.DefaultLifestyle = Lifestyle.Singleton;
-            
-            var sink = new BindableSink();
-            var levelSwitch = new LoggingLevelSwitch();
-            var serilogger = new LoggerConfiguration()
-                .Enrich.FromLogContext()
-                .MinimumLevel.ControlledBy(levelSwitch)
-                .WriteTo.BindableSink(sink)
-                .CreateLogger();
-
-            var logger = new SerilogLoggerProvider(serilogger).CreateLogger("test_logger");
 
             // Register Services:
-            Container.Register<LoggingLevelSwitch>(() => levelSwitch);
-            Container.Register<BindableSink>(() => sink);
-            Container.Register<ILogger>(() => logger);
+            Container.Register<WorkspaceService>();
 //
 //            // Register Framework
             Container.Register<IServiceProvider>(() => Container);
@@ -44,15 +29,11 @@ namespace WorkspaceManager.Configuration
 //            // Register Views
             Container.Register<App>();
             Container.Register<MainWindow>();
-//            Container.Register<ServicesListViewModel>();
-//            Container.Register<InstallViewModel>();
-//            Container.Register<LogView>();
+            Container.Register<WorkspaceListView>();
 //
 //            // Register ViewModels
-//            Container.Register<MainWindowViewModel>();
-//            Container.Register<ServicesListView>();
-//            Container.Register<InstallView>();
-//            Container.Register<LogViewViewModel>();
+            Container.Register<MainWindowViewModel>();
+            Container.Register<WorkspaceListViewModel>();
 
             Container.Verify();
         }

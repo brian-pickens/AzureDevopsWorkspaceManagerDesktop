@@ -3,11 +3,11 @@
 namespace WorkspaceManager.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for WorkspaceListView.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class WorkspaceListView
     {
-        public MainWindow(MainWindowViewModel viewModel)
+        public WorkspaceListView(WorkspaceListViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;
