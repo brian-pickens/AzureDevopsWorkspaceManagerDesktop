@@ -9,7 +9,7 @@ using WorkspaceManager.Views;
 
 namespace WorkspaceManager.Configuration
 {
-    public static class Bootstrapper
+    public static class Configuration
     {
         public static Container Container { get; } = new Container();
 
@@ -21,8 +21,9 @@ namespace WorkspaceManager.Configuration
             Container.Options.DefaultLifestyle = Lifestyle.Singleton;
 
             // Register Services:
-            Uri projectCollectionUri = new Uri(configuration["projectCollectionUri"]);
-            Container.Register<WorkspaceService>((() => new WorkspaceService(projectCollectionUri)));
+            Uri endpoint = new Uri(configuration["RestApi"]);
+            string pat = configuration["Pat"];
+            Container.Register<WorkspaceService>((() => new WorkspaceService(endpoint, pat)));
 //
 //            // Register Framework
             Container.Register<IServiceProvider>(() => Container);
@@ -44,16 +45,13 @@ namespace WorkspaceManager.Configuration
 
         public static IConfiguration GetConfiguration()
         {
-            var builder = new ConfigurationBuilder()
+            var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
-                .AddJsonFile("appsettings.Development.json", true, true);
+                .AddJsonFile("appsettings.development.json", true, true)
+                .AddUserSecrets<Program>();
 
-            IConfiguration config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", true, true)
-                .Build();
-
-            return config;
+            return config.Build();
         }
     }
 }

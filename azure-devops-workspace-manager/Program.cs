@@ -8,7 +8,7 @@ namespace WorkspaceManager
 {
     public class Program
     {
-        private static Container Container => Bootstrapper.Container;
+        private static Container Container => Configuration.Configuration.Container;
 
         [STAThread]
         static void Main()

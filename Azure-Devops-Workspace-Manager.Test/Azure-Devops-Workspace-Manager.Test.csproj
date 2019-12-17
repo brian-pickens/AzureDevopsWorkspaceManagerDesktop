@@ -3,7 +3,12 @@
   <PropertyGroup>
     <TargetFrameworks>net48</TargetFrameworks>
     <RootNamespace>WorkspaceManager.Test</RootNamespace>
+    <UserSecretsId>6315d854-53d3-43bc-b164-850aefe02bee</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="..\azure-devops-workspace-manager\appsettings.json" Link="appsettings.json" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.9.0" />

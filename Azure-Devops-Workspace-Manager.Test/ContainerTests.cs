@@ -10,14 +10,14 @@ namespace WorkspaceManager.Test
         [Fact]
         public void ContainerConfigurationTest()
         {
-            var container = Bootstrapper.Container;
+            var container = Configuration.Configuration.Container;
             container.Verify();
         }
 
         [Fact]
         public void ConfigurationFileTests()
         {
-            var config = Bootstrapper.GetConfiguration();
+            var config = Configuration.Configuration.GetConfiguration();
             var uri = config["projectCollectionUri"];
             uri.Should().Be("http://chtfs1:8080/tfs/defaultcollection");
             new Uri(uri).Should().NotBeNull();
