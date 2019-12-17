@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using Microsoft.Extensions.Configuration;
 using SimpleInjector;
 using SimpleMVVM.Framework;
 using WorkspaceManager.Services;
@@ -9,16 +11,18 @@ namespace WorkspaceManager.Configuration
 {
     public static class Bootstrapper
     {
-        public static Container Container { get; }
+        public static Container Container { get; } = new Container();
 
-        static Bootstrapper()
+        public static void Initialize()
         {
+            var configuration = GetConfiguration();
+
             // Create the container as usual.
-            Container = new Container();
             Container.Options.DefaultLifestyle = Lifestyle.Singleton;
 
             // Register Services:
-            Container.Register<WorkspaceService>();
+            Uri projectCollectionUri = new Uri(configuration["projectCollectionUri"]);
+            Container.Register<WorkspaceService>((() => new WorkspaceService(projectCollectionUri)));
 //
 //            // Register Framework
             Container.Register<IServiceProvider>(() => Container);
@@ -36,6 +40,20 @@ namespace WorkspaceManager.Configuration
             Container.Register<WorkspaceListViewModel>();
 
             Container.Verify();
+        }
+
+        public static IConfiguration GetConfiguration()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.Development.json", true, true);
+
+            IConfiguration config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", true, true)
+                .Build();
+
+            return config;
         }
     }
 }

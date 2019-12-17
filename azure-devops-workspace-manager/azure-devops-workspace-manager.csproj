@@ -21,6 +21,7 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.0" />
     <PackageReference Include="Microsoft.TeamFoundationServer.ExtendedClient" Version="16.153.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.3">
@@ -41,6 +42,15 @@
     <ProjectReference Include="..\SimpleMVVM\SimpleMVVM.LoadingIndicators\SimpleMVVM.LoadingIndicators.csproj" />
     <ProjectReference Include="..\SimpleMVVM\SimpleMVVM.Serilog\SimpleMVVM.Serilog.csproj" />
     <ProjectReference Include="..\SimpleMVVM\SimpleMVVM\SimpleMVVM.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
